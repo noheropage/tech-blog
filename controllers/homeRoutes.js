@@ -20,6 +20,24 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/profile', async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Post }],
+    })
+
+    const user = userData.get({ plain: true })
+
+    res.render('profile', {
+      ...user,
+      logged_in: true
+    })
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
+
 router.get('/login', (req, res) => {
   // If a session exists, redirect the request to the homepage
   if (req.session.logged_in) {

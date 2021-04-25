@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Tech Blog</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="/css/jass.css">
 </head>
 
@@ -16,12 +17,12 @@
     <!-- Only display the logout button if the user is logged in -->
     
     <nav>
-      <a href='/home'>Home</a>
-      <a href="/dashboard">Dashboard</a>
+      <a href='/'>Home</a>
+      <a href="/profile">Profile</a>
       {{#if logged_in}}
       <button class="btn" id="logout">logout</button>
       {{else}}
-      <button class="btn" id='login'>login/singup</button>
+      <a href='/login' id='login'>login/singup</a>
       {{/if}}
     </nav>
     
@@ -35,9 +36,7 @@
 
   <!-- Only include the logout script if the user is logged in -->
   {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{else}}
-  <script src="/js/login.js"></script>
+  <script src="/js/logout.js"></script>  
   {{/if}}
 </body>
 
