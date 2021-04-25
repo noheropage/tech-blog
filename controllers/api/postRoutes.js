@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth')
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
-            include: [{ model: User }]
+            include: [{ model: User, attributes: ['username'] }]
         })
         res.status(200).json(postData)
     } catch (error) {
@@ -13,10 +13,49 @@ router.get('/', async (req, res) => {
     }
 })
 
+// add withAuth
+router.post('/', async (req, res) => {
+    try {
+        const newPost = await Post.create(
+            {
+                // title: req.body.title,
+                // content: req.body.content
+            ...req.body
+            // user_id: req.session.user_id
+        }
+        )
+
+        res.status(200).json(newPost)
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
+// add withAuth
+router.put('/:id', async (req, res) => {
+    try {
+        const updatePost = await Post.update(
+            {
+                content: req.body.content,
+                title: req.body.title,
+            },
+            {
+                where: {
+                    user_id: req.session.user_id,
+                    id: req.params.id
+                }
+            }
+        )
+        res,status(200).json(updatePost)
+    } catch (error) {
+        
+    }
+})
+
 router.get('/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
-            include: [{ model: User }, { model: Comment }]
+            include: [{ model: User, attributes: ['username'] }, { model: Comment }]
         })
         res.status(200).json(postData)
     } catch (error) {
