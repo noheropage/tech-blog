@@ -3,7 +3,7 @@ const newFormHandler = async (event) => {
   
     const title = document.querySelector('#post-title').value.trim();
     // const needed_funding = document.querySelector('#post-funding').value.trim();
-    const description = document.querySelector('#post-content').value.trim();
+    const content = document.querySelector('#post-content').value.trim();
   
     if (title && content) {
       const response = await fetch(`/api/posts`, {
@@ -42,7 +42,7 @@ const newFormHandler = async (event) => {
     .querySelector('.new-post-form')
     .addEventListener('submit', newFormHandler);
   
-  document
-    .querySelector('.post-list')
-    .addEventListener('click', delButtonHandler);
+  // document
+  //   .querySelector('.post-list')
+  //   .addEventListener('click', delButtonHandler);
   

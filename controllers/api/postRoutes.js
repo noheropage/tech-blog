@@ -20,8 +20,8 @@ router.post('/', async (req, res) => {
             {
                 // title: req.body.title,
                 // content: req.body.content
-            ...req.body
-            // user_id: req.session.user_id
+            ...req.body,
+            user_id: req.session.user_id
         }
         )
 
@@ -55,7 +55,14 @@ router.put('/:id', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
-            include: [{ model: User, attributes: ['username'] }, { model: Comment }]
+            include: [
+                { 
+                    model: User, attributes: ['username'] 
+                }, 
+                { 
+                    model: Comment 
+                }
+            ]
         })
         res.status(200).json(postData)
     } catch (error) {
