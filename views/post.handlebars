@@ -3,7 +3,7 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h4 class="card-title">{{title}}</h4>
-    <h6 class="card-subtitle mb-2 text-muted">-{{user.username}} -{{date_created}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">Created by {{user.username}} on {{format_date date_created}}</h6>
     <p class="card-text">{{content}}</p>
     {{!-- <a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a> --}}
@@ -14,7 +14,7 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     {{!-- <h4 class="card-title">{{title}}</h4> --}}
-    <h6 class="card-subtitle mb-2 text-muted">-{{user.username}} -{{comment.date_created}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">Created by {{user.username}} on {{format_date comment.date_created}}</h6>
     <p class="card-text">{{comment.content}}</p>
     {{!-- <a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a> --}}
