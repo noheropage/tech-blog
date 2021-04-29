@@ -1,17 +1,22 @@
 
 
-<div class="card" style="width: 18rem;">
+<div class="card" >
   <div class="card-body">
     <h4 class="card-title">{{title}}</h4>
     <h6 class="card-subtitle mb-2 text-muted">Created by {{user.username}} on {{format_date date_created}}</h6>
     <p class="card-text">{{content}}</p>
+    <button type="button" class="btn btn-primary col-12" id="add-comment">Add Comment</button>
     {{!-- <a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a> --}}
   </div>
 </div>
 
+<div class="card" id="new-comment-area">
+
+</div>
+
 {{#each comments as |comment|}}
-<div class="card" style="width: 18rem;">
+<div class="card" style=>
   <div class="card-body">
     {{!-- <h4 class="card-title">{{title}}</h4> --}}
     <h6 class="card-subtitle mb-2 text-muted">Created by {{user.username}} on {{format_date comment.date_created}}</h6>
@@ -21,3 +26,5 @@
   </div>
 </div>
 {{/each}}
+
+<script src="/js/post.js"></script>
