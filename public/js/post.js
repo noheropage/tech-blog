@@ -11,7 +11,7 @@ const addComment = async (event) => {
   let podEl = document.getElementById("new-comment-area");
   let node = document.createElement("form");
   let commentInput = document.createElement("input");
-  commentInput.setAttribute("id", "comment");
+  commentInput.setAttribute("id", "comment-content");
   commentInput.setAttribute("placeholder", "Enter Comment Here");
 
   let submitBtn = document.createElement("button");
@@ -32,11 +32,12 @@ const commentFormHandler = async (event) => {
   event.preventDefault();
 
   const content = document.querySelector("#comment-content").value.trim();
+  const post_id = document.querySelector('#add-comment').dataset.id;
 
-  if (content) {
+  if (content && post_id) {
     const response = await fetch(`/api/posts/comment`, {
       method: "POST",
-      body: JSON.stringify({ content }),
+      body: JSON.stringify({ content, post_id }),
       headers: {
         "Content-Type": "application/json",
       },

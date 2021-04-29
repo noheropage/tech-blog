@@ -31,6 +31,21 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.post('/comment', async (req, res) => {
+    try {
+        const newComment = await Comment.create(
+            {
+                ...req.body,
+                user_id: req.session.user_id,
+                // post_id: 
+            }
+        )
+        res.status(200).json(newComment)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
 // add withAuth
 router.put('/:id', async (req, res) => {
     try {
