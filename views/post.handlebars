@@ -4,18 +4,20 @@
   <div class="card-body">
     <h4 class="card-title">{{title}}</h4>
     <h6 class="card-subtitle mb-2 text-muted">Created by {{user.username}} on {{format_date date_created}}</h6>
-    <p class="card-text">{{content}}</p>
-    <button type="button" class="btn btn-primary col-11" id="add-comment" data-id="{{id}}">Add Comment</button>
+    <p class="card-text" id="post-content">{{content}}</p>
+    <div class="update-buttons" data-id="{{id}}">
+    <button type="button" class="btn btn-primary col-11" id="add-comment">Add Comment</button>
     {{#if post_owner}}
     <button type="button" class="btn btn-success col-5" id="update-post">Update</button>
     <button type="button" class="btn btn-danger col-5" id="delete-post">Delete</button>
     {{/if}}
+    </div>
     {{!-- <a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a> --}}
   </div>
 </div>
 
-<div class="card" id="new-comment-area">
+<div class="card" id="new-input-area">
 
 </div>
 
@@ -25,10 +27,11 @@
     {{!-- <h4 class="card-title">{{title}}</h4> --}}
     <h6 class="card-subtitle mb-2 text-muted">Created by {{user.username}} on {{format_date comment.date_created}}</h6>
     <p class="card-text">{{comment.content}}</p>
-    {{!-- <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a> --}}
   </div>
 </div>
 {{/each}}
 
+{{#if post_owner}}
+<script src="/js/update.js"></script>
+{{/if}}
 <script src="/js/post.js"></script>

@@ -1,14 +1,10 @@
-// if logged_in user = post user
-//  update, delete
 
-// everyone
-//  comment
 const addComment = async (event) => {
   event.preventDefault();
 
   document.querySelector("#add-comment").setAttribute("hidden", "true");
 
-  let podEl = document.getElementById("new-comment-area");
+  let podEl = document.getElementById("new-input-area");
   let node = document.createElement("form");
   let commentInput = document.createElement("input");
   commentInput.setAttribute("id", "comment-content");
@@ -32,7 +28,7 @@ const commentFormHandler = async (event) => {
   event.preventDefault();
 
   const content = document.querySelector("#comment-content").value.trim();
-  const post_id = document.querySelector('#add-comment').dataset.id;
+  const post_id = document.querySelector('.update-buttons').dataset.id;
 
   if (content && post_id) {
     const response = await fetch(`/api/posts/comment`, {

@@ -52,7 +52,7 @@ router.put('/:id', async (req, res) => {
         const updatePost = await Post.update(
             {
                 content: req.body.content,
-                title: req.body.title,
+                date_created: Date.now()
             },
             {
                 where: {
@@ -61,9 +61,9 @@ router.put('/:id', async (req, res) => {
                 }
             }
         )
-        res,status(200).json(updatePost)
+        res.status(200).json(updatePost)
     } catch (error) {
-        
+        res.status(500).json(error)
     }
 })
 
@@ -87,6 +87,11 @@ router.get('/:id', async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
     try {
+        const commentData = await Comment.destroy({
+            where: {
+                post_id: req.params.id
+            }
+        })
         const postData = await Post.destroy({
             where: {
                 id: req.params.id,
@@ -96,7 +101,9 @@ router.delete('/:id', withAuth, async (req, res) => {
 
         if (!postData) {
             res.status(404).json({ message: 'No post found with this id' })
+            return;
         }
+        res.status(200).json(commentData + postData)
     } catch (error) {
         res.status(500).json(error)
     }
