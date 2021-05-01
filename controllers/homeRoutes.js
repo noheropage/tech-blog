@@ -68,14 +68,19 @@ router.get('/post/:id', async (req, res) => {
         }
       ]
     })
-
+    if (postData.user_id === req.session.user_id) {
+      req.session.post_owner = true;
+    } else {
+      req.session.post_owner = false;
+    }
     const post = postData.get({ plain: true })
     const comments = commentData.map((comment) => comment.get({ plain: true }))
 
     res.render('post', {
       ...post,
       comments,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      post_owner: req.session.post_owner
     })
   } catch (error) {
     res.status(500).json(error)

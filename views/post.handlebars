@@ -5,7 +5,11 @@
     <h4 class="card-title">{{title}}</h4>
     <h6 class="card-subtitle mb-2 text-muted">Created by {{user.username}} on {{format_date date_created}}</h6>
     <p class="card-text">{{content}}</p>
-    <button type="button" class="btn btn-primary col-12" id="add-comment" data-id="{{id}}">Add Comment</button>
+    <button type="button" class="btn btn-primary col-11" id="add-comment" data-id="{{id}}">Add Comment</button>
+    {{#if post_owner}}
+    <button type="button" class="btn btn-success col-5" id="update-post">Update</button>
+    <button type="button" class="btn btn-danger col-5" id="delete-post">Delete</button>
+    {{/if}}
     {{!-- <a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a> --}}
   </div>
