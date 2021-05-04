@@ -2,13 +2,17 @@
   <div class="card-body">
         <div class="card-header">
             <h4 class="card-title">{{title}}</h4>
-            <h6 class="card-subtitle mb-2 text-muted text-right">Created by {{user.username}} on {{format_date date_created}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted text-right">
+                Created by {{user.username}} on {{format_date date_created}}
+            </h6>
         </div>
-        
+
     <p class="card-text m-4" id="post-content">{{content}}</p>
 
     <div class="update-buttons text-center m-1" data-id="{{id}}">
-    <button type="button" class="btn btn-primary" id="add-comment">Add Comment</button>
+    <button type="button" class="btn btn-primary" id="add-comment">
+        Add Comment
+    </button>
     {{#if post_owner}}
     <button type="button" class="btn btn-success" id="update-post">Update</button>
     <button type="button" class="btn btn-danger" id="delete-post">Delete</button>
@@ -17,16 +21,18 @@
   </div>
 </div>
 
-<div class="card" id="new-input-area">
-
-</div>
+{{!-- placeholder for user input boxes --}}
+<div class="card text-center input-group" id="new-input-area"></div>
 
 {{#each comments as |comment|}}
 <div class="card" style=>
   <div class="card-body">
     <div class="card-header">
-    <h6 class="card-subtitle mb-2 text-muted">Comment from {{user.username}} on {{format_date comment.date_created}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+            Comment from {{user.username}} on {{format_date comment.date_created}}
+        </h6>
     </div>
+
     <p class="card-text m-4">{{comment.content}}</p>
   </div>
 </div>
