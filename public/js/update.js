@@ -8,7 +8,10 @@ const editPost = async (event) => {
   let inputEl = document.getElementById("new-input-area");
   let node = document.createElement("form");
   let postInput = document.createElement("textarea");
+
   postInput.setAttribute("id", "new-post-content");
+  postInput.setAttribute("rows", "4")
+  postInput.setAttribute("cols", "50")
 
   node.setAttribute("class", "m-4")
 
@@ -19,7 +22,7 @@ const editPost = async (event) => {
   submitBtn.setAttribute("type", "submit");
   submitBtn.setAttribute("class", "btn btn-outline-success")
   submitBtn.setAttribute("id", "edit-post");
-  submitBtn.innerText = "Submit";
+  submitBtn.innerText = "Update Post";
 
   node.appendChild(postInput);
   node.appendChild(submitBtn);

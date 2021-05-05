@@ -1,4 +1,3 @@
-
 const addComment = async (event) => {
   event.preventDefault();
 
@@ -8,16 +7,18 @@ const addComment = async (event) => {
   let node = document.createElement("form");
   let commentInput = document.createElement("textarea");
 
-    node.setAttribute("class", "m-4")
+  node.setAttribute("class", "m-4");
 
   commentInput.setAttribute("id", "comment-content");
   commentInput.setAttribute("placeholder", "Enter Comment Here");
+  commentInput.setAttribute("rows", "4");
+  commentInput.setAttribute("cols", "50");
 
   let submitBtn = document.createElement("button");
   submitBtn.setAttribute("type", "submit");
-  submitBtn.setAttribute("class", "btn btn-outline-primary")
+  submitBtn.setAttribute("class", "btn btn-outline-primary");
   submitBtn.setAttribute("id", "submit-comment");
-  submitBtn.innerText = "Submit";
+  submitBtn.innerText = "Submit Comment";
 
   node.appendChild(commentInput);
   node.appendChild(submitBtn);
@@ -32,7 +33,7 @@ const commentFormHandler = async (event) => {
   event.preventDefault();
 
   const content = document.querySelector("#comment-content").value.trim();
-  const post_id = document.querySelector('.update-buttons').dataset.id;
+  const post_id = document.querySelector(".update-buttons").dataset.id;
 
   if (content && post_id) {
     const response = await fetch(`/api/posts/comment`, {
