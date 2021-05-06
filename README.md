@@ -12,3 +12,6 @@ The homepage has a list of existing posts. Create an account to access your prof
 ![Login/SignUp](./assets/screenshot_login.png)
 ![Profile](./assets/screenshot_profile.png)
 ![Post](./assets/screenshot_post.png)
+
+### URL
+[The Tech Blog Deployed on Heroku](https://secret-lowlands-04347.herokuapp.com/)
