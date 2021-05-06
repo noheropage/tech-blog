@@ -2,17 +2,17 @@ const { Comment } = require('../models');
 
 const commentData = [
     {
-        "content": "Very true1",
+        "content": "Could not agree more",
         "user_id": 1,
         "post_id": 1,
     },
     {
-        "content": "Well well well, what do we have here?2",
+        "content": "Well well well, what do we have here?",
         "user_id": 1,
         "post_id": 2
     },
     {
-        "content": "How do you do?3",
+        "content": "Well, actually....",
         "user_id": 2,
         "post_id": 2
     },

@@ -13,16 +13,14 @@ router.get('/', async (req, res) => {
     }
 })
 
-// add withAuth
-router.post('/', async (req, res) => {
+
+router.post('/', withAuth, async (req, res) => {
     try {
         const newPost = await Post.create(
             {
-                // title: req.body.title,
-                // content: req.body.content
-            ...req.body,
-            user_id: req.session.user_id
-        }
+                ...req.body,
+                user_id: req.session.user_id
+            }
         )
 
         res.status(200).json(newPost)
@@ -31,13 +29,12 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.post('/comment', async (req, res) => {
+router.post('/comment', withAuth, async (req, res) => {
     try {
         const newComment = await Comment.create(
             {
                 ...req.body,
-                user_id: req.session.user_id,
-                // post_id: 
+                user_id: req.session.user_id, 
             }
         )
         res.status(200).json(newComment)
@@ -47,7 +44,7 @@ router.post('/comment', async (req, res) => {
 })
 
 // add withAuth
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try {
         const updatePost = await Post.update(
             {
@@ -67,7 +64,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [

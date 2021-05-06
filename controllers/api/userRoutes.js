@@ -68,67 +68,6 @@ router.post('/login', async (req, res) => {
     }
 })
 
-// This enables a user to join a group
-// router.put('/:id', withAuth, async (req, res) => {
-//     try{
-//         const newPassword = await User.update(
-//             {password: req.body.password},
-//             {
-//                 where: {
-//                     id: req.params.id,
-//                 }
-//             }
-//         )
-//         res.status(200).json(newPassword)
-//     } catch(err) {
-//         res.status(400).json(err)
-//     }
-// })
-
-// router.put('/joinGroup', withAuth, async (req, res) => {
-//     try {
-//         const userData = await User.findByPk(req.session.user_id)
-//         if (!userData) {
-//             res.status(404).json({ message: 'No user found with this ID' })
-//             return;
-//         }
-//         userData.group_id = req.body.group_id;
-//         userData.save()
-//         req.session.group_id = userData.group_id
-//         res.status(200).json(userData)
-//     } catch (error) {
-//         res.status(400).json(error)
-//     }
-// })
-
-// This creates an event and sends an email to those concerned
-// router.post('/addEvent', withAuth, async (req, res) => {
-//     try {
-//         try {
-//             const addEvent = await UserEvent.create({
-//                 user_id: req.session.user_id,
-//                 event_id: req.body.event_id
-//             })
-//         }
-//         catch (error) {
-//             if (error.name === 'SequelizeUniqueConstraintError') {
-//             }
-//             else {
-//                 res.status(500).json(error)
-//             }
-//         }
-//         const currentUser = await User.findByPk(req.session.user_id)
-//         const userData = await User.findAll({ where: { group_id: currentUser.group_id }, attributes: ['email']})
-//         const currentEvent = await Event.findByPk(req.body.event_id)
-//         userData.forEach(element => {
-//             nodeMail.sendEventEmail(element.email, currentUser, currentEvent);
-//         });
-//         res.status(200).json(userData)
-//     } catch (error) {
-//         res.status(500).json(error)        
-//     }
-// })
-
 // Logout
 router.post('/logout', async (req, res) => {
     if(req.session.logged_in) {
@@ -139,18 +78,5 @@ router.post('/logout', async (req, res) => {
         res.status(404).end();
     }
 })
-
-// Enables users to leave a group that they are a member of
-// router.put('/leaveGroup', withAuth, async (req, res) => {
-//     try {
-//         const userData = await User.findByPk(req.session.user_id)
-//         userData.group_id = null;
-//         userData.save()
-//         req.session.group_id=userData.group_id;
-//         res.status(200).json(userData)
-//     } catch (error) {
-//         res.status(500).json(error)
-//     }
-// })
 
 module.exports = router;
